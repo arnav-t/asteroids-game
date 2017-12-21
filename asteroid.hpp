@@ -6,6 +6,9 @@
 #define edges 8
 const double pi = 3.14159265;
 
+const int maxVelocity = 5;
+const int maxAng = 7;
+
 class Asteroid
 {
 	private:
@@ -18,6 +21,9 @@ class Asteroid
 		Asteroid(int x, int y, int r)
 		{
 			centre = Vector(x,y);
+			velocity = Vector((rand()%maxVelocity - maxVelocity/2)/10.0,
+							  (rand()%maxVelocity - maxVelocity/2)/10.0);
+			angVelocity = (rand()%maxAng - maxAng/2)/100.0;
 			radius = r;
 			for(double i=0;i<2*pi;i+=2*pi/edges)
 				corners.push_back(Vector(
@@ -34,5 +40,17 @@ class Asteroid
 			scr.drawLine(corners.front().x, corners.front().y,
 						 corners.back().x, corners.back().y,
 						 255, 255, 255);
+		}
+		void update(Window& scr)
+		{
+			for(int i=0;i<edges;++i)
+			{
+				double r = (corners[i] - centre).magnitude();
+				double newAngle = atan2(corners[i].y - centre.y, corners[i].x - centre.x) + angVelocity;
+				corners[i].x = centre.x + r*std::cos(newAngle) + velocity.x;
+				corners[i].y = centre.y + r*std::sin(newAngle) + velocity.y;
+			}
+			centre = centre + velocity;
+			draw(scr);
 		}
 };

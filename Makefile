@@ -15,5 +15,4 @@ INCLUDES = # -I/usr/include/SDL2
 LIBS = -lSDL2
 
 $(TARGET): $(TARGET).cpp
-	touch ./$(TARGET).cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -o ./$(TARGET) ./$(TARGET).cpp $(LIBS)
