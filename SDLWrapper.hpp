@@ -23,7 +23,7 @@ class Window
 			SDL_SetRenderDrawColor(ren, r, g, b, 255);
 			SDL_RenderClear(ren);
 		}
-		void drawLine(int y1, int x1, int y2, int x2, int r, int g, int b)
+		void drawLine(int x1, int y1, int x2, int y2, int r, int g, int b)
 		{
 			SDL_SetRenderDrawColor(ren, r, g, b, 255);
 			SDL_RenderDrawLine(ren, x1, y1, x2, y2);
