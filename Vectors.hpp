@@ -2,13 +2,17 @@
 
 class Vector
 {
-	private:
-		double x,y;
 	public:
+		double x,y;
 		Vector(double X = 0, double Y = 0)
 		{
 			x = X;
 			y = Y;
+		}
+		Vector(const Vector &v)
+		{
+			x = v.x;
+			y = v.y;
 		}
 		double magnitude()
 		{
